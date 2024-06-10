@@ -16,7 +16,7 @@ width:100%;
 min-height:100vh;
 `
 const AppContainer = styled.div`
-  width:1280px;
+  width:1180px;
   max-width:100%;
 margin: 0 auto;
 `
@@ -72,7 +72,7 @@ const App = () => {
         <ModalZoom foto={fotoSeleccionada}
           alCerrar={() => setFotoSeleccionada(null)}
           alAlternarFavorito={alAlternarFavorito} />
-         <Pie/>
+        <Pie />
       </FondoGradiente>
     </>
   )
