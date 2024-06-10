@@ -1,7 +1,7 @@
 import { styled } from "styled-components"
 import BotonIcono from "../../BotonIcono"
 const Figure = styled.figure`
-    width: ${props => props.$expandida ? '90%' : '350px'};
+    width: ${props => props.$expandida ? '90%' : '330px'};
     max-width: 100%;
     margin: 0;
     display: flex;
