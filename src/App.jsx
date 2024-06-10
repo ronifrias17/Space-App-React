@@ -8,16 +8,17 @@ import Galeria from "./components/Galeria"
 import fotos from "./fotos.json"
 import { useState } from "react"
 import ModalZoom from "./components/ModalZoom"
+import Pie from "./components/Pie"
 
 const FondoGradiente = styled.div`
-  background: linear-gradient(175deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
-  width:100%;
-  min-height:100vh;
+background: linear-gradient(175deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
+width:100%;
+min-height:100vh;
 `
 const AppContainer = styled.div`
-  width:1180px;
+  width:1280px;
   max-width:100%;
-  margin: 0 auto;
+margin: 0 auto;
 `
 const MainContainer = styled.main`
   display: flex;
@@ -36,24 +37,21 @@ const App = () => {
 
   const alAlternarFavorito = (foto) => {
 
-
     if (foto.id === fotoSeleccionada?.id) {
       setFotoSeleccionada({
         ...fotoSeleccionada,
-        favorita: !foto.favorita
+        favorita: !fotoSeleccionada.favorita
       })
 
     }
 
-    setFotosDeGaleria(fotosDeGaleria.map(fotosDeGaleria => {
+    setFotosDeGaleria(fotosDeGaleria.map(fotoDeGaleria => {
       return {
-        ...fotosDeGaleria,
-        favorita: fotosDeGaleria.id === foto.id ? !foto.favorita : fotosDeGaleria.favorita
+        ...fotoDeGaleria,
+        favorita: fotoDeGaleria.id === foto.id ? !foto.favorita : fotoDeGaleria.favorita
       }
     }))
   }
-
-
 
 
   return (
@@ -66,12 +64,15 @@ const App = () => {
             <BarraLateral />
             <ContenidoGaleria>
               <Banner texto="La galería más completa de fotos del espacio" backgroundImage={banner} />
-              <Galeria alSeleccionarFoto={foto => setFotoSeleccionada(foto)} fotos={fotosDeGaleria}
-                alAlternarFavorito={alAlternarFavorito} />
+
+              <Galeria alSeleccionarFoto={foto => setFotoSeleccionada(foto)} fotos={fotosDeGaleria} alAlternarFavorito={alAlternarFavorito} />
             </ContenidoGaleria>
           </MainContainer>
         </AppContainer>
-        <ModalZoom foto={fotoSeleccionada} alCerrar={() => setFotoSeleccionada(null)} alAlternarFavorito={alAlternarFavorito} />
+        <ModalZoom foto={fotoSeleccionada}
+          alCerrar={() => setFotoSeleccionada(null)}
+          alAlternarFavorito={alAlternarFavorito} />
+         <Pie/>
       </FondoGradiente>
     </>
   )
