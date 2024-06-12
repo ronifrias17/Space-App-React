@@ -30,13 +30,14 @@ const Galeria = ({ fotos = [], alSeleccionarFoto, alAlternarFavorito, consulta }
                     <Titulo>Navegue por la galería</Titulo>
                     <ImagenesContainer>
                         {fotos.filter(foto => {
-                            return consulta == '' || foto.titulo.toLowerCase().includes(consulta.toLowerCase());
-
-                        }).map(foto => <Imagen
-                            alAlternarFavorito={alAlternarFavorito}
-                            alSolicitarZoom={alSeleccionarFoto}
-                            key={foto.id}
-                            foto={foto} />)
+                            return consulta == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+                                .includes(consulta.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, ""))
+                        })
+                            .map(foto => <Imagen
+                                alAlternarFavorito={alAlternarFavorito}
+                                alSolicitarZoom={alSeleccionarFoto}
+                                key={foto.id}
+                                foto={foto} />)
                         }
                     </ImagenesContainer>
                 </SeccionFluida>
